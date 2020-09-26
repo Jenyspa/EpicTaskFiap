@@ -23,7 +23,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	//autorização
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/user/**", "/task/**").authenticated().and().formLogin();
+		//http.authorizeRequests().antMatchers("/user/**", "/task/**").authenticated().and().formLogin();
 		
 	}
 	
