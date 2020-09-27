@@ -1,16 +1,20 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head th:include="_template :: head">
-	<meta charset="UTF-8">
-	<title>Tasks</title>
-</head>
+<html xmlns:th="http://thymeleaf.org">
+
+<head th:include="_template :: head"></head>
+
 <body>
 	<h1>Tarefas</h1>
-	
+
 	<nav th:include="_template :: menu('task')"></nav>
 	
 	<a href="task/new">Cadastrar Tarefas</a>
+	
+	<div class="tasks" th:each="task : ${tasks}">
+		<div th:include="task_card :: content"></div>
+	</div>
 
 	<footer th:include="_template :: footer"></footer>
+
 </body>
 </html>

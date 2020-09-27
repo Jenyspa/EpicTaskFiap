@@ -26,7 +26,7 @@ public class TaskController {
 	private TaskRepository repository;
 	
 	@GetMapping()
-	public ModelAndView tasks(Task task) {
+	public ModelAndView tasks() {
 		List<Task> tasksList = repository.findAll();
 		ModelAndView modelAndView = new ModelAndView("tasks");
 		modelAndView.addObject("tasks", tasksList);
@@ -45,7 +45,7 @@ public class TaskController {
 		}
 		repository.save(task);
 		attributes.addFlashAttribute("message", "Task cadastrada com sucesso");
-		return "redirect:task";
+		return "redirect:/task";
 	}
 	
 	@GetMapping("delete/{id}")

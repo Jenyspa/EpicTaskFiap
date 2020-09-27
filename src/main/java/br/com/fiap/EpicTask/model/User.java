@@ -16,6 +16,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Entity(name="users")
 public class User implements UserDetails { 
 	
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -93,6 +95,6 @@ public class User implements UserDetails {
 
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 }

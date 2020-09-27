@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,9 +35,8 @@ public class UserController {
 	
 	@PostMapping()
 	public String save(@Valid User user, BindingResult result, RedirectAttributes attributes) {
-		if(result.hasErrors()) {
-			return "user_new";
-		}
+		if(result.hasErrors()) return "user_new";
+		user.setPass(new BCryptPasswordEncoder().encode(user.getPass()));
 		repository.save(user);
 		attributes.addFlashAttribute("message", "Usuário cadastrado com sucesso");
 		return "redirect:user";

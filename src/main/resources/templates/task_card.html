@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="_template :: head">
+	<meta charset="UTF-8">
+	<title>Epic Task</title>
 </head>
 <body>
-	<div class="card-task">
+	<div class="card-task" th:fragment="content">
 		<img class="avatar" src="foto.jpg">
-		<h2>Analise</h2>
+		<h2 th:text="${task.title}"></h2>
 		<div class="point">
 			<span class="material-icons">star</span>
-			<span>100</span>
+			<span th:text="${task.point}"></span>
 		</div> 
 	
 		<div class="status">
@@ -19,7 +19,7 @@
 				<circle cx="70" cy="70" r="70" style="stroke-dashoffset: calc(440 - (440 * 90 )/100 ) "></circle>
 			</svg>
 			<div class="number">
-				<h2>90%</h2>
+				<h2 th:text="${task.status}"></h2>
 			</div>
 		</div>
 		
