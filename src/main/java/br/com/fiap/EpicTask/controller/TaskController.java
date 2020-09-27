@@ -1,6 +1,7 @@
 package br.com.fiap.EpicTask.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -52,5 +53,21 @@ public class TaskController {
 	public String deleteUser(@PathVariable("id") Long id) {
 		repository.deleteById(id);
 		return "redirect:/task";
+	}
+	
+	@GetMapping("/{id}")
+	public ModelAndView editUserForm(@PathVariable Long id) {
+		Optional<Task> task = repository.findById(id);
+		ModelAndView modelAndView = new ModelAndView("task_edit");
+		modelAndView.addObject("task", task);
+		return modelAndView;		
+	}
+	
+	@PostMapping("/update")
+	public String updateUser(@Valid Task task, BindingResult result, RedirectAttributes redirect) {
+		if (result.hasErrors()) return "task_edit";
+		repository.save(task);
+		redirect.addFlashAttribute("message", "Task editada com sucesso");
+		return "redirect:/task"; 
 	}
 }
